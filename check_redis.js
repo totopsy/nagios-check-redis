@@ -2,14 +2,16 @@
 'use strict';
 
 var optimist = require('optimist')
-    .usage('Usage: $0 -H [hostname] -p [port] -t [check_type] -w -c --help')
+    .usage('Usage: $0 -H [hostname] -p [port] -A [auth_password] -t [check_type] -w -c --help')
     .default('H', 'localhost')
     .default('p', 6379)
+	.default('A', null)
 	.default('t', 'ping')
 	.default('w', '1GB')
 	.default('c', '2GB')
     .describe('H', 'hostname of the redis server')
     .describe('p', 'port of the redis server')
+    .describe('A', 'Password (AUTH COMMAND) of the redis server')
 	.describe('t', 'type to check, ping or memory')
 	.describe('w', 'warning threshold (e.g. 100MB or 1GB, only used when type is memory)')
 	.describe('c', 'critical threshold (e.g. 100MB or 1GB, only used when type is memory)')
@@ -25,7 +27,7 @@ if (argv.help) {
     process.exit(exitCode);
 }
 
-var client = redis.createClient(argv.p, argv.H);
+var client = redis.createClient({host: argv.H, port: argv.p, password: argv.A});
 
 client.on("error", function (err) {
     console.log('CRITICAL - ', err.toString());
