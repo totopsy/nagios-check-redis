@@ -12,17 +12,17 @@ Simple plugin for nagios to check status or memory usage of a redis server.
 
 To download the latest version:
 
-    npm install -g nagios-redis
+    npm install -g
 
 ## Usage
 
 	# check ping
-	check_redis -H localhost -p 6379 -t ping
+	check_redis_auth -H localhost -p 6379 -t ping
 	
 	# check memory
-	check_redis -H localhost -p 6379 -t memory -w 1GB -c 2GB
+	check_redis_auth -H localhost -p 6379 -t memory -w 1GB -c 2GB
 	
-	check_redis --help
+	check_redis_auth --help
 	
 Note on units: when memory size is needed, it is possible to specify it in the usual form of 1k 5GB 4M and so forth.
 
@@ -30,12 +30,12 @@ Edit your commands.cfg and add the following:
 
 	define command {
 	    command_name    check_redis_ping
-	    command_line    $USER1$/nagios-redis/check_redis.js -H $HOSTADDRESS$ -p $ARG1$ -t ping
+	    command_line    $USER1$/nagios-redis/check_redis_auth.js -H $HOSTADDRESS$ -p $ARG1$ -t ping
 	}
 
 	define command {
 	    command_name    check_redis_memory
-	    command_line    $USER1$/nagios-redis/check_redis.js -H $HOSTADDRESS$ -p $ARG1$ -t memory -w $ARG2$ -c $ARG3$
+	    command_line    $USER1$/nagios-redis/check_redis_auth.js -H $HOSTADDRESS$ -p $ARG1$ -t memory -w $ARG2$ -c $ARG3$
 	}
 
 Now you can monitor redis servers by adding:
@@ -58,8 +58,8 @@ Now you can monitor redis servers by adding:
 
 Add the command to your NRPE configuration on your remote host:
 
-	command[check_redis_ping]=check_redis -t ping
-    command[check_redis_memory]=check_redis -t memory -w 2GB -c 3GB
+	command[check_redis_ping]=check_redis_auth -t ping
+    command[check_redis_memory]=check_redis_auth -t memory -w 2GB -c 3GB
 
 Monitor the service on your Nagios host:
 

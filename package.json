@@ -1,16 +1,16 @@
 {
-  "name": "nagios-redis-toto",
-  "version": "1.0.4",
+  "name": "nagios-redis-auth",
+  "version": "1.0.0",
   "description": "Nagios plugin to monitor redis status - AUTH SUPPORT",
   "main": "check_redis.js",
   "bin": {
-    "check_redis_toto": "./check_redis.js"
+    "check_redis_auth": "./check_redis.js"
   },
   "keywords": [
     "nagios",
     "redis"
   ],
-  "author": "Michel Hiemstra <info@michelhiemstra.nl>",
+  "author": "Thomas FONTAINE <thomas.fontaine@me.com>",
   "license": "none",
   "dependencies": {
     "bytes": "^2.1.0",
