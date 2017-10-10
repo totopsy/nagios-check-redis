@@ -1,10 +1,10 @@
 {
-  "name": "nagios-redis",
+  "name": "nagios-redis-toto",
   "version": "1.0.4",
-  "description": "Nagios plugin to monitor redis status",
+  "description": "Nagios plugin to monitor redis status - AUTH SUPPORT",
   "main": "check_redis.js",
   "bin": {
-    "check_redis": "./check_redis.js"
+    "check_redis_toto": "./check_redis.js"
   },
   "keywords": [
     "nagios",
